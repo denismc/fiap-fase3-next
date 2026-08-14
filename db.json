@@ -1,0 +1,26 @@
+{
+  "tasks": [
+    {
+      "name": "teste",
+      "completed": true,
+      "id": "-CIKcH1IYOc",
+      "completedAt": "2026-07-31T18:05:24.076Z"
+    },
+    {
+      "name": "teste 2",
+      "completed": false,
+      "id": "4NqTkN4rhkc"
+    },
+    {
+      "name": "teste 3",
+      "completed": false,
+      "id": "piRifhk1BJc"
+    },
+    {
+      "name": "Next",
+      "completed": false,
+      "id": "n7CsEvakTzY"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import useGeolocation from "../../hooks/useGeolocation";
+import { useTrash } from "../../contexts/TrashContext";
 
 const HeaderContainer = styled.header`
     position: relative;
@@ -17,6 +18,30 @@ const HeaderContainer = styled.header`
 const Nav = styled.nav`
     display: flex;
     gap: 15px;
+`
+
+const TrashButton = styled.button`
+    background: none;
+    border: none;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+
+    &:focus-visible {
+        outline: 2px solid white;
+    }
+`
+
+const Badge = styled.span`
+    display: inline-block;
+    background: white;
+    color: #ed145b;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    line-height: 1;
+    padding: 3px 6px;
+    margin-left: 4px;
 `
 
 const GeoBox = styled.span`
@@ -35,6 +60,7 @@ const GeoBox = styled.span`
 
 const Header: React.FC = () => {
     const { coordinates, permission } = useGeolocation();
+    const { trashedTasks, openTrash } = useTrash();
 
     return (
         <HeaderContainer>
@@ -42,6 +68,9 @@ const Header: React.FC = () => {
                 <Link href="/">Home</Link>
                 <Link href="/completed">Tarefas Concluídas</Link>
                 <Link href="/pending">Tarefas Pendentes</Link>
+                <TrashButton type="button" onClick={openTrash}>
+                    Lixeira{trashedTasks.length > 0 && <Badge>{trashedTasks.length}</Badge>}
+                </TrashButton>
             </Nav>
             <GeoBox>
                 Lat: {coordinates.latitude ?? "..."} <br/>

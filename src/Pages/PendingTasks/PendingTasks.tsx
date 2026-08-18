@@ -3,6 +3,7 @@
 import React from "react";
 import type { Task } from "../../types";
 import styled from "styled-components";
+import { useTrash } from "../../contexts/TrashContext";
 
 interface PendingTasksProps {
     tasks: Task[]
@@ -26,7 +27,8 @@ const ListItem = styled.li<{ $completed: boolean }>`
 `
 
 const PendingTasks: React.FC<PendingTasksProps> = ({ tasks }) => {
-    const pendingTasks = tasks.filter(task => !task.completed);
+    const { hiddenIds } = useTrash();
+    const pendingTasks = tasks.filter(task => !task.completed && !hiddenIds.has(task.id));
 
     return (
         <div>

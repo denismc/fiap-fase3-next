@@ -4,6 +4,8 @@ import StyledComponentsRegistry from '../lib/registry'
 import Header from "@/components/Header/Header";
 import MainContent from "@/components/MainContent/MainContent";
 import Footer from "@/components/Footer/Footer";
+import { TrashProvider } from "@/contexts/TrashContext";
+import TrashModal from "@/components/TrashModal/TrashModal";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,13 +20,16 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <StyledComponentsRegistry>
-          <div className="app-container">
-            <Header />
-            <MainContent>{children}</MainContent>
-            <Footer />
-          </div>
-        </StyledComponentsRegistry>
+        <TrashProvider>
+          <StyledComponentsRegistry>
+            <div className="app-container">
+              <Header />
+              <MainContent>{children}</MainContent>
+              <Footer />
+            </div>
+            <TrashModal />
+          </StyledComponentsRegistry>
+        </TrashProvider>
       </body>
     </html>
   )
